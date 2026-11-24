@@ -1,0 +1,17 @@
+[project]
+name = "mail-lab-subscribers"
+version = "0.1.0"
+description = "Command-line tool for the PROCARMA Club newsletter: reads subscribers, checks an issue, sends it to a practice mail server."
+readme = "README.md"
+authors = [
+    { name = "Irfan Ahmed", email = "irfan.pak@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = []
+
+[project.scripts]
+mail-lab-subscribers = "mail_lab_subscribers:main"
+
+[build-system]
+requires = ["uv_build>=0.13.8,<0.14.0"]
+build-backend = "uv_build"
