@@ -8,4 +8,7 @@ My guesses before running the code, and what actually happened.
 - **My prediction:**
   - There are 24 emails in `data/subscribers.csv`.
   - The `daily-drinkers` group has 8 emails.
-- **Result:** _not checked yet_
+- **Result:** ✅ Both correct.
+  - 24 emails.
+  - `daily-drinkers` has 8 emails.
+  - The other two groups, `gift-buyers` and `tea-curious`, also have 8 each.
