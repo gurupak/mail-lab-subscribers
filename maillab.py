@@ -1,4 +1,5 @@
 import sys
+from datetime import date
 
 
 def read_rows(path: str) -> list[list[str]]:
@@ -23,6 +24,14 @@ def count_groups(path: str) -> dict[str, int]:
         group = row[3]
         groups[group] = groups.get(group, 0) + 1
     return groups
+
+
+def count_since(path: str, run_date: date, days: int) -> int:
+    return 0
+
+
+def next_send(run_date: date) -> date:
+    return run_date
 
 
 if len(sys.argv) > 1 and sys.argv[1] == "subscribers":
