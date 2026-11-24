@@ -1,5 +1,5 @@
 import sys
-from datetime import date
+from datetime import date, timedelta
 
 
 def read_rows(path: str) -> list[list[str]]:
@@ -27,11 +27,23 @@ def count_groups(path: str) -> dict[str, int]:
 
 
 def count_since(path: str, run_date: date, days: int) -> int:
-    return 0
+    start = run_date - timedelta(days=days)
+    count = 0
+    for row in read_rows(path):
+        joined = date.fromisoformat(row[4])
+        if start <= joined and joined <= run_date:
+            count = count + 1
+    return count
 
 
 def next_send(run_date: date) -> date:
-    return run_date
+    if run_date.month == 12:
+        day = date(run_date.year + 1, 1, 1)
+    else:
+        day = date(run_date.year, run_date.month + 1, 1)
+    while day.weekday() != 0:  # 0 is Monday
+        day = day + timedelta(days=1)
+    return day
 
 
 if len(sys.argv) > 1 and sys.argv[1] == "subscribers":
