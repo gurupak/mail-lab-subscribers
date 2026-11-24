@@ -11,6 +11,13 @@ It reads the subscribers, checks an issue, and sends it to a practice mail serve
 - Never use a real person's email address. Use `@example.com` addresses, and `@resend.dev` for practice sends.
 - Commit and push after every step.
 
+## Behaviors first
+
+- I give the expected answers.
+- You write them as checks (`assert` lines in `checks.py` that call my functions).
+- You show me the checks failing.
+- Then you write the code that makes them pass.
+
 ## How I learn
 
 - I have completed up to 13.7 of https://agentfactory.panaversity.org/building-ai-workers/programming-fundamentals/ and I update this number as I learn.
