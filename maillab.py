@@ -46,9 +46,27 @@ def next_send(run_date: date) -> date:
     return day
 
 
-if len(sys.argv) > 1 and sys.argv[1] == "subscribers":
-    path = "data/subscribers.csv"
-    print("Total:", count_total(path))
-    groups = count_groups(path)
-    for group in sorted(groups):
-        print(group + ":", groups[group])
+if len(sys.argv) > 1:
+    command = sys.argv[1]
+    since_days = 0
+    run_date = date.today()  # the only place that reads today's date
+    i = 2
+    while i < len(sys.argv):
+        if sys.argv[i] == "--since-days":
+            since_days = int(sys.argv[i + 1])
+        elif sys.argv[i] == "--run-date":
+            run_date = date.fromisoformat(sys.argv[i + 1])
+        i = i + 2
+
+    if command == "subscribers":
+        path = "data/subscribers.csv"
+        print("Total:", count_total(path))
+        groups = count_groups(path)
+        for group in sorted(groups):
+            print(group + ":", groups[group])
+        if since_days > 0:
+            print("Run date:", run_date)
+            print("Joined in the last", since_days, "days:", count_since(path, run_date, since_days))
+    elif command == "next-send":
+        print("Run date:", run_date)
+        print("Next send:", next_send(run_date))
