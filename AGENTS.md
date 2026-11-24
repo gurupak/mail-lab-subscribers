@@ -10,6 +10,7 @@ It reads the subscribers, checks an issue, and sends it to a practice mail serve
 - Use uv for everything: creating the project, adding packages, running code and tests.
 - Never use a real person's email address. Use `@example.com` addresses, and `@resend.dev` for practice sends.
 - Commit and push after every step.
+- Never read today's date inside the logic. Pass the run date in. Only the command line may read today's date.
 
 ## Behaviors first
 
