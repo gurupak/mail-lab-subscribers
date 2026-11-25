@@ -17,6 +17,7 @@ It reads the subscribers, checks an issue, and sends it to a practice mail serve
 ## Behaviors first
 
 - I give the expected answers.
+- I decide the test cases and their answers. Never change an expected answer to make a test pass.
 - You write them as tests: one pytest test per behavior in `test_maillab.py`, named for the behavior it checks, with `assert` lines that call my functions.
 - Run the tests with `uv run pytest`.
 - You show me the tests failing.
