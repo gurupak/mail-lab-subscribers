@@ -31,6 +31,7 @@ It reads the subscribers, checks an issue, and sends it to a practice mail serve
 - Put any copies outside the project and change no project files.
 - When a command crashes on data, check the data before changing the code.
 - Read a Python error from the bottom: the last line says what went wrong; the lowest line in our own file says where.
+- Green only proves what the tests check. Every rule in `docs/email-rules.md` needs its own tests before we trust an issue.
 
 ## How I learn
 
