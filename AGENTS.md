@@ -32,6 +32,7 @@ It reads the subscribers, checks an issue, and sends it to a practice mail serve
 - When a command crashes on data, check the data before changing the code.
 - Read a Python error from the bottom: the last line says what went wrong; the lowest line in our own file says where.
 - Green only proves what the tests check. Every rule in `docs/email-rules.md` needs its own tests before we trust an issue.
+- When a rule in `docs/email-rules.md` is vague, stop and ask me what it means. Don't guess in the code.
 
 ## How I learn
 
