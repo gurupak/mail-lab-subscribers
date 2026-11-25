@@ -30,3 +30,33 @@ def test_next_send_is_first_monday_of_next_month():
 def test_next_send_in_december_moves_into_next_year():
     run_date = date.fromisoformat("2026-12-07")
     assert maillab.next_send(run_date) == date.fromisoformat("2027-01-04")
+
+
+def test_short_subject_has_no_problems():
+    text = "Subject: The Steep Club opens Monday\nPreview: Your monthly tea box.\n"
+    assert maillab.check_subject(text) == []
+
+
+def test_subject_of_50_characters_has_no_problems():
+    text = "Subject: Your Steep Club box ships on Monday with new teas.\nPreview: Your monthly tea box.\n"
+    assert maillab.check_subject(text) == []
+
+
+def test_subject_of_51_characters_is_too_long():
+    text = "Subject: Your Steep Club box ships on Monday with fresh teas\nPreview: Your monthly tea box.\n"
+    assert maillab.check_subject(text) == ["subject is too long"]
+
+
+def test_empty_subject_is_empty():
+    text = "Subject:\nPreview: Your monthly tea box.\n"
+    assert maillab.check_subject(text) == ["subject is empty"]
+
+
+def test_subject_of_only_spaces_is_empty():
+    text = "Subject:     \nPreview: Your monthly tea box.\n"
+    assert maillab.check_subject(text) == ["subject is empty"]
+
+
+def test_no_subject_line_is_missing():
+    text = "Preview: Your monthly tea box.\n\nHi {{first_name}},\n"
+    assert maillab.check_subject(text) == ["subject is missing"]

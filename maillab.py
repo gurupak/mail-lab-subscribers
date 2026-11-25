@@ -46,6 +46,10 @@ def next_send(run_date: date) -> date:
     return day
 
 
+def check_subject(issue_text: str) -> list[str]:
+    return ["not written yet"]
+
+
 if __name__ == "__main__" and len(sys.argv) > 1:
     command = sys.argv[1]
     since_days = 0
