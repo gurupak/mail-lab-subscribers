@@ -11,6 +11,7 @@ It reads the subscribers, checks an issue, and sends it to a practice mail serve
 - Never use a real person's email address. Use `@example.com` addresses, and `@resend.dev` for practice sends.
 - Commit and push after every step.
 - Never read today's date inside the logic. Pass the run date in. Only the command line may read today's date.
+- Command-line code goes under `if __name__ == "__main__":`, so importing the file (as the tests do) never runs it.
 - When we learn a new rule in a session, propose it for AGENTS.md. I decide.
 
 ## Behaviors first
