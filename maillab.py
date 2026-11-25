@@ -47,7 +47,15 @@ def next_send(run_date: date) -> date:
 
 
 def check_subject(issue_text: str) -> list[str]:
-    return ["not written yet"]
+    lines = issue_text.splitlines()
+    if len(lines) == 0 or not lines[0].startswith("Subject:"):
+        return ["subject is missing"]
+    subject = lines[0][8:].strip()
+    if subject == "":
+        return ["subject is empty"]
+    if len(subject) > 50:
+        return ["subject is too long"]
+    return []
 
 
 if __name__ == "__main__" and len(sys.argv) > 1:
