@@ -26,6 +26,7 @@ It reads the subscribers, checks an issue, and sends it to a practice mail serve
 
 - When I ask for a test, check the numbers a second way that does not use Mail-Lab's code (a shell command or another Python module).
 - Put any copies outside the project and change no project files.
+- When a command crashes on data, check the data before changing the code.
 
 ## How I learn
 
