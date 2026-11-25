@@ -19,6 +19,13 @@ It reads the subscribers, checks an issue, and sends it to a practice mail serve
 - You write them as checks (`assert` lines in `checks.py` that call my functions).
 - You show me the checks failing.
 - Then you write the code that makes them pass.
+- Expected answers come from me or the data, never from running the code and copying its output. Pick answers that also test the edges.
+- Every new check must fail before the code exists. A check that passes straight away proves nothing.
+
+## Testing
+
+- When I ask for a test, check the numbers a second way that does not use Mail-Lab's code (a shell command or another Python module).
+- Put any copies outside the project and change no project files.
 
 ## How I learn
 
