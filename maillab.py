@@ -46,7 +46,7 @@ def next_send(run_date: date) -> date:
     return day
 
 
-if len(sys.argv) > 1:
+if __name__ == "__main__" and len(sys.argv) > 1:
     command = sys.argv[1]
     since_days = 0
     run_date = date.today()  # the only place that reads today's date
