@@ -16,11 +16,12 @@ It reads the subscribers, checks an issue, and sends it to a practice mail serve
 ## Behaviors first
 
 - I give the expected answers.
-- You write them as checks (`assert` lines in `checks.py` that call my functions).
-- You show me the checks failing.
+- You write them as tests: one pytest test per behavior in `test_maillab.py`, named for the behavior it checks, with `assert` lines that call my functions.
+- Run the tests with `uv run pytest`.
+- You show me the tests failing.
 - Then you write the code that makes them pass.
 - Expected answers come from me or the data, never from running the code and copying its output. Pick answers that also test the edges.
-- Every new check must fail before the code exists. A check that passes straight away proves nothing.
+- Every new test must fail before the code exists. A test that passes straight away proves nothing.
 
 ## Testing
 
