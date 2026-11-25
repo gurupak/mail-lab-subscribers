@@ -135,3 +135,9 @@ def test_no_greeting_and_no_footer_are_two_problems():
         + "The PROCARMA team\n"
     )
     assert maillab.check_issue(text) == ["greeting has no {{first_name}}", "footer is missing"]
+
+
+def test_subject_length_is_what_len_counts():
+    # Looks like 50 characters, but 👍🏽 is two pieces (thumbs up + skin tone), so len() counts 51.
+    text = "Subject: 👍🏽 Thanks for joining PROCARMA Club. See you Monday\nPreview: Your monthly tea box.\n"
+    assert maillab.check_subject(text) == ["subject is too long"]
