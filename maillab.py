@@ -130,3 +130,13 @@ if __name__ == "__main__" and len(sys.argv) > 1:
     elif command == "next-send":
         print("Run date:", run_date)
         print("Next send:", next_send(run_date))
+    elif command == "check":
+        with open(sys.argv[2]) as file:
+            text = file.read()
+        problems = check_issue(text)
+        if len(problems) == 0:
+            print("OK")
+        else:
+            for problem in problems:
+                print(problem)
+            sys.exit(1)
