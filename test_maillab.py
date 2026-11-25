@@ -60,3 +60,78 @@ def test_subject_of_only_spaces_is_empty():
 def test_no_subject_line_is_missing():
     text = "Preview: Your monthly tea box.\n\nHi {{first_name}},\n"
     assert maillab.check_subject(text) == ["subject is missing"]
+
+
+def test_issue_01_has_no_problems():
+    with open("issues/issue-01.md") as file:
+        text = file.read()
+    assert maillab.check_issue(text) == []
+
+
+def test_preview_of_91_characters_is_too_long():
+    text = (
+        "Subject: PROCARMA Club opens Monday\n"
+        + "Preview: Your monthly tea box, chosen by our blenders. Founding members get the first box free, too.\n"
+        + "\n"
+        + "Hi {{first_name}},\n"
+        + "\n"
+        + "[Join PROCARMA Club](https://procarma.example/procarma-club)\n"
+        + "\n"
+        + "Steep well,\n"
+        + "The PROCARMA team\n"
+        + "\n"
+        + "You're getting this because you joined the PROCARMA waitlist.\n"
+        + "PROCARMA, {{company_address}} · Unsubscribe: {{unsubscribe_url}}\n"
+    )
+    assert maillab.check_issue(text) == ["preview is too long"]
+
+
+def test_greeting_without_first_name_is_a_problem():
+    text = (
+        "Subject: PROCARMA Club opens Monday\n"
+        + "Preview: Your monthly tea box, chosen by our blenders. Founding members get the first box free.\n"
+        + "\n"
+        + "Hi there,\n"
+        + "\n"
+        + "[Join PROCARMA Club](https://procarma.example/procarma-club)\n"
+        + "\n"
+        + "Steep well,\n"
+        + "The PROCARMA team\n"
+        + "\n"
+        + "You're getting this because you joined the PROCARMA waitlist.\n"
+        + "PROCARMA, {{company_address}} · Unsubscribe: {{unsubscribe_url}}\n"
+    )
+    assert maillab.check_issue(text) == ["greeting has no {{first_name}}"]
+
+
+def test_two_links_is_a_problem_even_with_http():
+    text = (
+        "Subject: PROCARMA Club opens Monday\n"
+        + "Preview: Your monthly tea box, chosen by our blenders. Founding members get the first box free.\n"
+        + "\n"
+        + "Hi {{first_name}},\n"
+        + "\n"
+        + "[Join PROCARMA Club](https://procarma.example/procarma-club)\n"
+        + "\n"
+        + "[See this month's teas](http://procarma.example/teas)\n"
+        + "\n"
+        + "Steep well,\n"
+        + "The PROCARMA team\n"
+        + "\n"
+        + "You're getting this because you joined the PROCARMA waitlist.\n"
+        + "PROCARMA, {{company_address}} · Unsubscribe: {{unsubscribe_url}}\n"
+    )
+    assert maillab.check_issue(text) == ["more than one link"]
+
+
+def test_no_greeting_and_no_footer_are_two_problems():
+    text = (
+        "Subject: PROCARMA Club opens Monday\n"
+        + "Preview: Your monthly tea box, chosen by our blenders. Founding members get the first box free.\n"
+        + "\n"
+        + "[Join PROCARMA Club](https://procarma.example/procarma-club)\n"
+        + "\n"
+        + "Steep well,\n"
+        + "The PROCARMA team\n"
+    )
+    assert maillab.check_issue(text) == ["greeting has no {{first_name}}", "footer is missing"]

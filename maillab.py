@@ -58,6 +58,10 @@ def check_subject(issue_text: str) -> list[str]:
     return []
 
 
+def check_issue(issue_text: str) -> list[str]:
+    return ["not written yet"]
+
+
 if __name__ == "__main__" and len(sys.argv) > 1:
     command = sys.argv[1]
     since_days = 0
