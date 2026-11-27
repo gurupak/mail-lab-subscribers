@@ -12,6 +12,8 @@ It reads the subscribers, checks an issue, and sends it to a practice mail serve
 - Commit and push after every step.
 - Never read today's date inside the logic. Pass the run date in. Only the command line may read today's date.
 - Command-line code goes under `if __name__ == "__main__":`, so importing the file (as the tests do) never runs it.
+- One module per job, in `src/maillab`: `subscribers`, `dates`, `issue`, `checks`, `commands`.
+- Only the `commands` module prints.
 - A text's length is what Python's `len()` counts, not what a reader sees. An emoji like 👍🏽 counts as 2.
 - When we learn a new rule in a session, propose it for AGENTS.md. I decide.
 
