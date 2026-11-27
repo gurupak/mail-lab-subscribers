@@ -1,5 +1,7 @@
 from datetime import date
 
+import pytest
+
 import maillab
 
 path = "data/subscribers.csv"
@@ -141,3 +143,8 @@ def test_subject_length_is_what_len_counts():
     # Looks like 50 characters, but 👍🏽 is two pieces (thumbs up + skin tone), so len() counts 51.
     text = "Subject: 👍🏽 Thanks for joining PROCARMA Club. See you Monday\nPreview: Your monthly tea box.\n"
     assert maillab.check_subject(text) == ["subject is too long"]
+
+
+def test_run_date_as_text_stops_with_an_error():
+    with pytest.raises(TypeError):
+        maillab.count_since(path, "2026-11-20", 30)
